@@ -22,10 +22,6 @@ func TestEcho2(t *testing.T) {
 	assert.NotNil(t, actual)
 }
 
-/* Experiment to measure the difference in running time between our potentially inefficient versions and the one that uses strings.Join.
- * Section 1.6 illustrates part of the time package
- * Section 11.4 shows how to write benchmark tests for systematic performance evaluation.)
- */
 func TestTimeForEcho1(t *testing.T) {
 	start := time.Now()
 	echo([]string{"arg1", "arg2", "arg3", "arg4"})
