@@ -7,9 +7,8 @@
 // Lissajous generates GIF animations of random Lissajous figures.
 
 /* 
- * Exercise 1.5: Change the Lissajous program’s color palette to green on black, for added authenticity. 
- * To create the web color #RRGGBB, use color.RGBA{0xRR, 0xGG, 0xBB, 0xff}, 
- * where each pair of hexadecimal digits represents the intensity of the red, green, or blue component of the pixel.
+ * Exercise 1.6: Modify the Lissajous program to produce images in multiple colors by adding more values to palette 
+ * and then displaying them by changing the third argument of SetColorIndex in some interesting way.
  */
 package main
 
@@ -30,13 +29,15 @@ import (
 	"time"
 )
 
-var green = color.RGBA{0x00, 0xFF, 0x00, 0xFF}
-var palette = []color.Color{color.Black, green}
-
-const (
-	blackIndex = 0 // next color in palette
-	greenIndex = 1
-)
+var palette = []color.Color{
+	color.RGBA{0xFF, 0, 0, 0xFF},       // red
+	color.RGBA{0xFF, 0xA5, 0, 0xFF},    // orange
+	color.RGBA{0xFF, 0xFF, 0, 0xFF},    // yellow
+	color.RGBA{0, 0xFF, 0, 0xFF},       // green
+	color.RGBA{0, 0, 0xFF, 0xFF},       // blue
+	color.RGBA{0x4B, 0, 0x82, 0xFF},    // indigo
+	color.RGBA{0xEE, 0x82, 0xEE, 0xFF}, // violet	
+}
 
 func main() {
 	// The sequence of images is deterministic unless we seed
@@ -69,11 +70,12 @@ func lissajous(out io.Writer) {
 	for i := 0; i < nframes; i++ {
 		rect := image.Rect(0, 0, 2*size+1, 2*size+1)
 		img := image.NewPaletted(rect, palette)
+		index := uint8(rand.Intn(len(palette)))
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
 			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5),
-				greenIndex)
+				index)
 		}
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
