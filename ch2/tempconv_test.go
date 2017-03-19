@@ -1,19 +1,21 @@
 package tempconv
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestString(t *testing.T) {
-	celsius := Celsius(1.75)
-	assert.Equal(t, reflect.TypeOf(celsius), reflect.TypeOf(Celsius(3)))
+	celsius := Celsius(1.75).String()
+	celsiusExpected := "1.75°C"
+	assert.Equal(t, celsius, celsiusExpected)
 
-	fahrenheit := Fahrenheit(1.75)
-	assert.Equal(t, reflect.TypeOf(fahrenheit), reflect.TypeOf(Fahrenheit(3.5)))
+	fahrenheit := Fahrenheit(1.75).String()
+	fahrenheitExpected := "1.75°F"
+	assert.Equal(t, fahrenheit, fahrenheitExpected)
 
-	kelvin := Kelvin(5.5)
-	assert.Equal(t, reflect.TypeOf(kelvin), reflect.TypeOf(Kelvin(8)))
+	kelvin := Kelvin(5.5).String()
+	kelvinExpected := "5.5°K"
+	assert.Equal(t, kelvin, kelvinExpected)
 }
