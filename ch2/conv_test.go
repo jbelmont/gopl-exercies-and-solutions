@@ -1,4 +1,4 @@
-package tempconv
+package ch2
 
 import (
 	"testing"
