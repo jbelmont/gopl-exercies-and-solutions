@@ -13,10 +13,10 @@ type Fahrenheit float64
 type Kelvin float64
 
 const (
+	// AbsoluteZeroC is constant
 	AbsoluteZeroC Celsius = -273.15
 	FreezingC     Celsius = 0
 	BoilingC      Celsius = 100
-	ZeroK         Kelvin  = -273.15
 )
 
 func (c Celsius) String() string {
@@ -30,6 +30,3 @@ func (f Fahrenheit) String() string {
 func (k Kelvin) String() string {
 	return fmt.Sprintf("%g°K", k)
 }
-
-// Exercise 2.1: Add types, constants, and functions to tempconv for processing temperatures in the Kelvin scale,
-// where zero Kelvin is −273.15°C and a difference of 1K has the same magnitude as 1°C.
