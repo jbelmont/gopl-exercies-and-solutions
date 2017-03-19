@@ -44,6 +44,12 @@ func BenchmarkPopCount(b *testing.B) {
 	}
 }
 
+func BenchmarkPopCountLoop(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PopCountLoop(0x1234567890ABCDEF)
+	}
+}
+
 func BenchmarkBitCount(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		BitCount(0x1234567890ABCDEF)
